@@ -1,10 +1,12 @@
 import 'package:chat/components/sign_button.dart';
 import 'package:chat/components/text_field.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({super.key});
+  final void Function()? onTap;
+  const SignUpScreen({super.key, required this.onTap});
 
   @override
   State<SignUpScreen> createState() => _SignUpScreenState();
@@ -89,13 +91,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
 
                 // Redirect to Login screen
-                const Text.rich(
+                  Text.rich(
+                  style: const TextStyle(fontSize: 17),
                   TextSpan(
                     text: "Already have an account? ",
                     children: [
                       TextSpan(
                         text: 'LogIn',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                        recognizer: TapGestureRecognizer()..onTap = widget.onTap,
                       )
                     ],
                   ),
